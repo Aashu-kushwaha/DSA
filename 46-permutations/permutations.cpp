@@ -1,6 +1,6 @@
 class Solution {
 public:
-void getpermute(vector<int>nums, int idx, vector<vector<int>>&ans ){
+void getpermute(vector<int>&nums, int idx, vector<vector<int>>&ans ){
     if(idx==nums.size()){
         ans.push_back({nums});
         return;
