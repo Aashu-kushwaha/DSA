@@ -1,33 +1,26 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-     int n= nums.size();
-     vector<int>house1;
-     vector<int>house2;
-     if(n==1) return nums[0];
-     for(int i=0;i<n;i++){
-        if(i!=0) house1.push_back(nums[i]);
-        if(i!=n-1) house2.push_back(nums[i]);
-     }
-     return max(solve(house1),solve(house2));
-    }
-int solve(vector<int>&nums){
-    int n=nums.size();
-    int prev,pprev,curr;
-    int flag=0;
-    pprev=nums[0];
-    if(n>1){
-        flag=1;
-        prev= max(nums[0],nums[1]);
-        int rob=0,skip=0;
-    for(int i=2;i<n;i++){
-        rob=nums[i]+pprev;
-        skip=prev;
-        curr=max(rob,skip);
-        pprev=prev;
-        prev=curr;
-    }
-    }
-    return flag==0?pprev:prev;
+int rob(vector<int> & nums){
+    if(nums.size()==0) return 0;
+    if(nums.size()==1) return nums[0];
+    vector<int>v1(nums.begin(),nums.end()-1);
+    vector<int>v2(nums.begin()+1,nums.end());
+    return max(robber(v1),robber(v2));
 }
-};
+
+int robber(vector<int>& nums) {
+        int n= nums.size();
+        vector<int>dp(n,0);
+        if(n==1){
+           return nums[0];
+        }
+            dp[0]=nums[0];
+            dp[1]  = max(nums[0],nums[1]);
+        for(int i= 2;i<n;i++){
+         dp[i]= max(dp[i-1],dp[i-2]+nums[i]);
+        }
+        
+        return dp[n-1];
+    }
+
+};  
