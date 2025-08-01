@@ -5,7 +5,7 @@ public:
             return startValue-target;
         }
       if(target%2==0){
-        target/2;
+      
         return 1+brokenCalc(startValue, target/2);
       }
       return 1+brokenCalc(startValue, target+1);
