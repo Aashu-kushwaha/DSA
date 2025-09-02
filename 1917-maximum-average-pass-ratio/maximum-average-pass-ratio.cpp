@@ -1,6 +1,5 @@
 class Solution {
 public:
-#define P pair<double,int>
     double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
         int n = classes.size();
         priority_queue<pair<double,int>> pq;//Max Heap
