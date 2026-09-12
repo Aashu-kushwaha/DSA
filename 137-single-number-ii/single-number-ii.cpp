@@ -1,23 +1,16 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int result = 0;
-        for (int k = 0; k <= 31; k++) {
-            int temp = (1 << k);
-
-            int countone = 0;
-
-            for (int& num : nums) {
-                if ((num & temp) == 0) {
-
-                } else {
-                    countone++;
-                }
-            }
-            if (countone % 3 == 1) {
-                result = (result | temp);
+        int n = nums.size();
+        map<int,int>mapp;
+        for(int i=0;i<n;i++){
+            mapp[nums[i]]++;
+        }
+        for(auto it: mapp){
+            if(it.second==1){
+                return it.first;
             }
         }
-        return result;
+       return 0;
     }
 };
