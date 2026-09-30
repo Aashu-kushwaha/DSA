@@ -1,19 +1,17 @@
 class Solution {
 public:
     int maxDepth(std::string s) {
-        int depth = 0;
-        int r = 0;
-        for (char c : s) {
-            if (c == ')') {
-                depth--;
-                continue;
+        int maxOpen = 0;
+        int parentheses =0;
+        for(char ch : s){
+            if(ch == '('){
+                parentheses++;
+                maxOpen = max(maxOpen,parentheses);
             }
-            // Digits and operators
-            if (c != '(') continue;
-            depth++;
-            // New max only possible after '('
-            if (depth > r) r = depth;
+            else if(ch == ')'){
+                parentheses--;
+            }
         }
-        return r;
+        return maxOpen;
     }
 };
